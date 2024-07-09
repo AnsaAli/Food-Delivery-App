@@ -1,0 +1,28 @@
+{
+  "name": "fooddeleveryapp",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "npx parcel index.html",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AnsaAli/Food-Delivery-App.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AnsaAli/Food-Delivery-App/issues"
+  },
+  "homepage": "https://github.com/AnsaAli/Food-Delivery-App#readme",
+  "dependencies": {
+    "parser": "^0.1.4",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "process": "^0.11.10"
+  }
+}
