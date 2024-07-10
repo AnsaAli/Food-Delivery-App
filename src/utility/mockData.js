@@ -1,11 +1,4 @@
-import React from "react";
-
-// Body
-//  -container
-//  -card container
-//    image,star,cuisine
-
-const cardDatas = [
+let cardDatas = [
 
     {
         "info": {
@@ -1662,48 +1655,4 @@ const cardDatas = [
 
 ]
 
-const CardsItems = (props) => {
-   
-    const { restauDetails } = props;
-  
-    // const {name,avgRatingString,cuisines,cloudinaryImageId,sla} =restauDetails.info;
-    return (
-        <div className="card-container">
-            <div className="dish-image">
-                <img className="food-image" src={"https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/" +
-                    restauDetails.info.cloudinaryImageId
-                } />
-            </div>
-            <div className="details">
-                <h4>{restauDetails.info.name}</h4>
-                <h5>{restauDetails.info.avgRatingString} Star, {restauDetails.info.sla.deliveryTime} minutes</h5>
-                <h5>{restauDetails.info.cuisines.join(', ')}</h5>
-
-                {/* <h5>{restauDetails.info.name} minutes</h5> */}
-            </div>
-        </div>
-    )
-}
-const Body = () => {
-    return (
-        <div className="body-container">
-            <div className="Search">
-                Search
-            </div>
-            <div className="card-list">
-                {/* <CardsItems restauDetails={cardDatas[0]} />
-                <CardsItems restauDetails={cardDatas[1]} />
-                <CardsItems restauDetails={cardDatas[3]} />
-                <CardsItems restauDetails={cardDatas[4]} /> */}
-                {
-                    cardDatas.map((resta)=>{
-                    //   console.log(resta.info.name);
-                      return <CardsItems key={resta.info.id} restauDetails = {resta}/>
-                    })
-                }
-
-            </div>
-        </div>
-    )
-}
-export default Body;
+export default cardDatas;

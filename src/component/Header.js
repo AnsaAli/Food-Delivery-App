@@ -1,11 +1,12 @@
 import React from "react";
+import { Logo_img } from "../utility/constants"
 
 const Header = ()=>{
 
     return(
         <div className="nav-bar">
             <div className="logo-container">
-                <img className="logo" src="https://img.freepik.com/free-vector/ecofood-logo-template_1195-33.jpg?"/>
+                <img className="logo" src={ Logo_img }/>
             </div>
             <div className="nav-items">
                 <ul>

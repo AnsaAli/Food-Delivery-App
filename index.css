@@ -52,3 +52,18 @@
     flex-wrap: wrap;
     
 }
+.filter-btn{
+    margin: 15px;
+    padding: 10px;
+    background-color: rgb(241, 144, 144);
+    border: none;
+    border-radius: 5px;
+    color: black;
+    font-weight: bold;
+    font-size: 16px;
+    cursor: pointer;
+}
+.filter-btn:hover{
+    background-color: rgba(232, 63, 63, 0.845);
+    color: white;
+}
