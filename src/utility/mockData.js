@@ -233,7 +233,7 @@ let cardDatas = [
             ],
             "avgRating": 4.3,
             "parentId": "195515",
-            "avgRatingString": "4.3",
+            "avgRatingString": "4",
             "totalRatingsString": "1K+",
             "sla": {
                 "deliveryTime": 23,

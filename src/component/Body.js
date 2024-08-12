@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import cardDatas from "../utility/mockData";
-import CardsItems from './CardsItems'
+import CardsItems from './CardsItems';
+import Shimmer from './Shimmer';
+import { Link } from "react-router-dom";
 // Body
 //  -container
 //  -card container
@@ -8,53 +10,83 @@ import CardsItems from './CardsItems'
 
 const Body = () => {
     // const [listData, setListData] = useState(cardDatas);
+    // const [filterData, setfilterData] = useState(cardDatas); 
     const [listData, setListData] = useState([]);
+    const [filterData, setfilterData] = useState([]);
+    //this is used for to do saerch while we have alredy  
+
+    //for to set input value
+    const [serchText, setSearchText] = useState('')
 
     useEffect(() => {
         fetchData();
     }, []);
 
+
     const fetchData = async () => {
-        const data = await fetch(
-            "https://www.swiggy.com/dapi/restaurants/list/v5?lat=10.033826&lng=76.312538&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
-        ); //fetch is from browser, js engine
+        try {
+            const response = await fetch(" https://www.swiggy.com/dapi/restaurants/list/v5?lat=10.033826&lng=76.312538&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING");
 
-        const json = await data.json();
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
 
-      setListData(json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
+            const json = await response.json(); // Parse the JSON data from the response
+            setListData(json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
+            setfilterData(json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
 
+        } catch (error) {
+            console.error('Error fetching data:', error);
+        }
     };
 
-    if(listData.length === 0){
-        return <p>Loding..</p>
+    // will show loding while page render
+    // if(listData.length === 0){
+    //     return <p>Loding..</p>
+    // }
+
+    //to show shimmer UI
+    if (listData.length === 0) {
+        return <Shimmer />
     }
 
     return (
-        <div className="body-container">
-            <div className="Search">
-                Search
-            </div>
-            <div className="filter">
-                <button className="filter-btn"
-                    onClick=
-                    {() => {
-                        const filterList = listData.filter(data => {
-                            return data.info.avgRatingString > 4.4
-                        });
+        <>
+            <div className="body-container">
+                <div className="Search">
+                    <input type="text" placeholder="search here" value={serchText} onChange={(e) => setSearchText(e.target.value)} />
+                    <button className="input-btn" onClick={() => {
+                        const filteredRestau = listData.filter((restau) => restau.info.name.toLowerCase().includes(serchText.toLowerCase()))
+                        console.log(serchText)
+                        setfilterData(filteredRestau);
+                    }} >
+                        Search</button>
+                </div>
+                <div className="filter">
+                    <button className="filter-btn"
+                        onClick=
+                        {() => {
+                            const filterList = filterData.filter(data => {
+                                return data.info.avgRatingString > 4.5
+                            });
 
-                        setListData(filterList);
-                    }}>Top Rated Restaurants</button>
+                            setfilterData(filterList);
+                        }}>Top Rated Restaurants</button>
+                </div>
             </div>
             <div className="card-list">
 
                 {
-                    listData.map((resta) => {
-                        return <CardsItems key={resta.info.id} restauDetails={resta} />
-                    })
+                    filterData ? filterData.map((resta) => {
+                        return (<Link to={"/restaurants/" + resta.info.id} key={resta.info.id} className="res-list">
+                            <CardsItems restauDetails={resta} />
+                        </Link>)
+                    }) : 'Hello'
+                    
                 }
 
             </div>
-        </div>
+        </>
     )
 }
 export default Body;
