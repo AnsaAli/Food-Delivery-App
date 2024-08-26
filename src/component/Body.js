@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from "react";
-import cardDatas from "../utility/mockData";
+import React, {  useState } from "react";
 import CardsItems from "./CardsItems";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
 import useDisplayRestau from "../utility/useDisplayRestau";
+import useOnlineStatus from "../utility/useOnlineStatus";
 
 const Body = () => {
   const { listData, filterData, setfilterData } = useDisplayRestau([]);
