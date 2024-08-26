@@ -16,7 +16,7 @@ const useDisplayRestau =()=>{
        setfilterData(json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
     }
 
-    return {listData,filterData}
+    return {listData,filterData,setfilterData}
 
 }
 

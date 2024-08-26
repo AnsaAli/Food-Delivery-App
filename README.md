@@ -34,3 +34,33 @@ useEffect(() => {
 
   //     setResInfo(json.data);
   //   };
+
+
+# Body fetching added to another cudtomHook 
+// const [listData, setListData] = useState(cardDatas);
+    // const [filterData, setfilterData] = useState(cardDatas); 
+    // const [listData, setListData] = useState([]);
+    // const [filterData, setfilterData] = useState([]);
+    //this is used for to do saerch while we have alredy  
+
+// useEffect(() => {
+    //     fetchData();
+    // }, []);
+
+
+    // const fetchData = async () => {
+    //     try {
+    //         const response = await fetch(" https://www.swiggy.com/dapi/restaurants/list/v5?lat=10.033826&lng=76.312538&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING");
+
+    //         if (!response.ok) {
+    //             throw new Error(`HTTP error! status: ${response.status}`);
+    //         }
+
+    //         const json = await response.json(); // Parse the JSON data from the response
+    //         setListData(json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
+    //         setfilterData(json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
+
+    //     } catch (error) {
+    //         console.error('Error fetching data:', error);
+    //     }
+    // };
