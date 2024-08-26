@@ -3,6 +3,7 @@ import cardDatas from "../utility/mockData";
 import CardsItems from './CardsItems';
 import Shimmer from './Shimmer';
 import { Link } from "react-router-dom";
+import useDisplayRestau from "../utility/useDisplayRestau"
 // Body
 //  -container
 //  -card container
@@ -11,34 +12,36 @@ import { Link } from "react-router-dom";
 const Body = () => {
     // const [listData, setListData] = useState(cardDatas);
     // const [filterData, setfilterData] = useState(cardDatas); 
-    const [listData, setListData] = useState([]);
-    const [filterData, setfilterData] = useState([]);
+    // const [listData, setListData] = useState([]);
+    // const [filterData, setfilterData] = useState([]);
     //this is used for to do saerch while we have alredy  
 
+    const {listData,filterData} = useDisplayRestau([])
+  
     //for to set input value
     const [serchText, setSearchText] = useState('')
 
-    useEffect(() => {
-        fetchData();
-    }, []);
+    // useEffect(() => {
+    //     fetchData();
+    // }, []);
 
 
-    const fetchData = async () => {
-        try {
-            const response = await fetch(" https://www.swiggy.com/dapi/restaurants/list/v5?lat=10.033826&lng=76.312538&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING");
+    // const fetchData = async () => {
+    //     try {
+    //         const response = await fetch(" https://www.swiggy.com/dapi/restaurants/list/v5?lat=10.033826&lng=76.312538&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING");
 
-            if (!response.ok) {
-                throw new Error(`HTTP error! status: ${response.status}`);
-            }
+    //         if (!response.ok) {
+    //             throw new Error(`HTTP error! status: ${response.status}`);
+    //         }
 
-            const json = await response.json(); // Parse the JSON data from the response
-            setListData(json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
-            setfilterData(json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
+    //         const json = await response.json(); // Parse the JSON data from the response
+    //         setListData(json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
+    //         setfilterData(json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
 
-        } catch (error) {
-            console.error('Error fetching data:', error);
-        }
-    };
+    //     } catch (error) {
+    //         console.error('Error fetching data:', error);
+    //     }
+    // };
 
     // will show loding while page render
     // if(listData.length === 0){

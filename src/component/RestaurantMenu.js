@@ -9,7 +9,8 @@ const RestaurantMenu = () => {
   const { resId } = useParams();
   const resInfo = useRestaurantMenu(resId); //creating a custom hook, for making RestaurantMenu component's job only for displaying the resaturants.
 
-  //defined a custom hook to fetch the restaurant datas
+  //defined a custom hook to fetch the restaurant datas in useRestaurantMenu
+
   //   useEffect(() => {
   //     fetchMenu();
   //   }, []);
