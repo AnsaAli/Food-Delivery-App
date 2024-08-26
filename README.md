@@ -18,3 +18,19 @@ useEffect(() => {
         console.log(json)
 
     }
+
+
+# customhook useRestaurantMenyu added to move the fetching concept from RestaurantMenu.js
+
+  //defined a custom hook to fetch the restaurant datas in useRestaurantMenu
+
+  //   useEffect(() => {
+  //     fetchMenu();
+  //   }, []);
+
+  //   const fetchMenu = async () => {
+  //     const data = await fetch(Menu_Api + resId);
+  //     const json = await data.json();
+
+  //     setResInfo(json.data);
+  //   };
