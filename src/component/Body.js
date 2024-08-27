@@ -23,16 +23,17 @@ const Body = () => {
 
   return (
     <>
-      <div className="body-container">
-        <div className="Search">
+      <div className="body-container flex">
+        <div className="Search m-4 p-4 px-10">
           <input
             type="text"
+            className="shadow-md p-2 w-60 rounded-l-md"
             placeholder="search here"
             value={serchText}
             onChange={(e) => setSearchText(e.target.value)}
           />
           <button
-            className="input-btn"
+            className="input-btn bg-black text-white p-2.5 rounded-r-md font-semibold uppercase "
             onClick={() => {
               const filteredRestau = listData.filter(
                 (restau) =>
@@ -48,9 +49,9 @@ const Body = () => {
             Search
           </button>
         </div>
-        <div className="filter">
+        <div className="filter m-4 p-4 px-10">
           <button
-            className="filter-btn"
+            className="filter-btn bg-red-500 p-2.5 text-white rounded-md font-semibold uppercase"
             onClick={() => {
               const filterList = filterData.filter((data) => {
                 return data.info.avgRatingString > 4.5;
@@ -63,7 +64,7 @@ const Body = () => {
           </button>
         </div>
       </div>
-      <div className="card-list">
+      <div className="card-list flex flex-wrap px-8">
         { filterData && filterData.length > 0  ? (
           filterData.map((resta) => {
             return (
