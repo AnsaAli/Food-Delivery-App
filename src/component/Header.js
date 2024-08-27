@@ -27,6 +27,9 @@ const Header = () => {
                     <li>
                         <Link className="home-link" to={"/contact"}>Contact</Link>
                     </li>
+                    <li>
+                        <Link className="home-link" to={"/groceries"}>Groceries</Link>
+                    </li>
                     <button className="login" onClick={() => {
                          {change === 'Login' ? setChnage('Logout') : setChnage('Login')}
                     }} >
