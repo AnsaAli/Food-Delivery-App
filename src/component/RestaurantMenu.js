@@ -1,7 +1,7 @@
-
 import Shimmer from "./Shimmer";
 import { useParams } from "react-router-dom";
 import useRestaurantMenu from "../utility/useRestaurantMenu";
+import ResCategory from "./ResCategory";
 
 const RestaurantMenu = () => {
   //   const [resInfo, setResInfo] = useState(null);
@@ -9,34 +9,35 @@ const RestaurantMenu = () => {
   const { resId } = useParams();
   const resInfo = useRestaurantMenu(resId); //creating a custom hook, for making RestaurantMenu component's job only for displaying the resaturants.
 
-
   if (resInfo === null) return <Shimmer />;
 
   const { name, costForTwoMessage, cuisines } = resInfo.cards[2].card.card.info;
   const { itemCards } =
     resInfo?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR.cards[3]?.card?.card;
-  console.log(itemCards);
-  return (
-    <div className="menu">
-      <div className="info">
-        <h1>{name}</h1>
-        <p>{costForTwoMessage}</p>
-        <p>{cuisines.join()}</p>
+  // console.log(
+  //   "itemCards===========",
+  //   resInfo?.cards[4].groupedCard?.cardGroupMap?.REGULAR?.cards
+  // );
 
-        <h3>Menu</h3>
-        <ul>
-          {itemCards
-            ? itemCards.map((item) => {
-                return (
-                  <li key={item.card.info.id}>
-                    {" "}
-                    {item.card.info.name} -{"Rs:"} {item.card.info.price / 100}{" "}
-                    {"/-"}
-                  </li>
-                );
-              })
-            : ""}
-        </ul>
+  const categories =
+    resInfo?.cards[4].groupedCard?.cardGroupMap?.REGULAR?.cards.filter(
+      (category) =>
+        category.card?.card?.["@type"] ===
+        "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory"
+    );
+  // console.log("categories: ", categories);
+  return (
+    <div className="text-center my-10">
+      <div className="info">
+        <h1 className="font-bold mb-5 text-2xl">{name}</h1>
+        <p className="font-semibold">
+          {cuisines.join()} - {costForTwoMessage}
+        </p>
+
+        {/* categories accordions */}
+        {categories.map((category) => (
+          <ResCategory data={category?.card?.card} />
+        ))}
       </div>
     </div>
   );
