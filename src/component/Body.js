@@ -1,5 +1,5 @@
 import React, {  useState } from "react";
-import CardsItems from "./CardsItems";
+import CardsItems, {showPromottedLabel} from "./CardsItems";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
 import useDisplayRestau from "../utility/useDisplayRestau";
@@ -10,6 +10,8 @@ const Body = () => {
 
   //for to set input value
   const [serchText, setSearchText] = useState("");
+
+  const ShowPromottedLabelInCards = showPromottedLabel(CardsItems);
 
   // will show loding while page render
   // if(listData.length === 0){
@@ -75,6 +77,7 @@ const Body = () => {
               >
                 <CardsItems restauDetails={resta} />
               </Link>
+              // if {filterData.info.promotted ?< ShowPromottedLabelInCards restauDetails={resta}/> : <CardsItems restauDetails={resta} />}
             );
           })
         ) : (
