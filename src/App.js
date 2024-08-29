@@ -1,14 +1,15 @@
-import React, { lazy, Suspense } from "react";
+import React, { lazy, Suspense, useEffect, useState } from "react";
 import ReactDOM from "react-dom/client";
 import Header from "./component/Header";
 import Body from "./component/Body";
-import { createBrowserRouter,RouterProvider ,Outlet } from "react-router-dom";
+import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
 import Contact from "./component/Contact";
-import About from  "./component/About";
+import About from "./component/About";
 import Error from "./component/Error";
 import RestaurantMenu from "./component/RestaurantMenu";
+import UserContext from "./utility/UserContext";
 // import Grocery from "./component/Grocery";
-const Grocery = lazy(()=> import("./component/Grocery"));
+const Grocery = lazy(() => import("./component/Grocery"));
 /* 
 Food App
 -----
@@ -23,49 +24,59 @@ Footer
 
 */
 
-function App(){
+function App() {
+  const [userName, setUserName] = useState();
 
-return(
-    <>
-    <Header/>
-    <Outlet/>
-    </>
-)
-};
+  //after authentication
+  useEffect(() => {
+    //after making an API call will get the data
+    const data = {
+      name: "Ansa",
+    };
+    setUserName(data.name)
+  }, []);
 
-const appRouter =createBrowserRouter([
+  return (
+    <UserContext.Provider value={{loggedInUser:userName }}>
+       <Header />
+       <Outlet />
+    </UserContext.Provider>
+  );
+}
+
+const appRouter = createBrowserRouter([
   {
     path: "/",
-    element: <App/>,
-    children:[
+    element: <App />,
+    children: [
       {
         path: "/",
-        element: <Body/>
-      }
-      ,
+        element: <Body />,
+      },
       {
         path: "/contact",
-        element : <Contact/> 
+        element: <Contact />,
       },
       {
-        path : "/about",
-        element : < About />
+        path: "/about",
+        element: <About />,
       },
       {
-        path : "/groceries",
-        element : (
-          <Suspense fallback={<h3>...loading</h3>}>< Grocery /></Suspense>
-        )
+        path: "/groceries",
+        element: (
+          <Suspense fallback={<h3>...loading</h3>}>
+            <Grocery />
+          </Suspense>
+        ),
       },
       {
         path: "/restaurants/:resId",
-        element: <RestaurantMenu/>
-      }
+        element: <RestaurantMenu />,
+      },
     ],
-    errorElement: <Error />
-  }
-  
-])
+    errorElement: <Error />,
+  },
+]);
 
-const root= ReactDOM.createRoot(document.getElementById('root'));
-root.render(<RouterProvider router={appRouter}/>);
+const root = ReactDOM.createRoot(document.getElementById("root"));
+root.render(<RouterProvider router={appRouter} />);

@@ -1,11 +1,14 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Logo_img } from "../utility/constants";
 import { Link } from "react-router-dom";
 import useOnlineStatus from "../utility/useOnlineStatus";
+import UserContext from "../utility/UserContext";
 
 const Header = () => {
     const [change, setChnage] = useState('Login');
     const onlineStatus = useOnlineStatus();
+
+    const {loggedInUser} = useContext(UserContext);
 
     return (
         <div className="nav-bar flex justify-between shadow-sm px-8" >
@@ -29,6 +32,9 @@ const Header = () => {
                     </li>
                     <li>
                         <Link className="home-link" to={"/groceries"}>Groceries</Link>
+                    </li>
+                    <li>
+                        <Link className="home-link font-bold" >Welcome {loggedInUser}!</Link>
                     </li>
                     <button className="login" onClick={() => {
                          {change === 'Login' ? setChnage('Logout') : setChnage('Login')}
