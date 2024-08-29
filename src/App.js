@@ -8,6 +8,8 @@ import About from "./component/About";
 import Error from "./component/Error";
 import RestaurantMenu from "./component/RestaurantMenu";
 import UserContext from "./utility/UserContext";
+import { Provider } from "react-redux";
+import cartStore from "./utility/cartStore";
 // import Grocery from "./component/Grocery";
 const Grocery = lazy(() => import("./component/Grocery"));
 /* 
@@ -33,14 +35,16 @@ function App() {
     const data = {
       name: "Ansa",
     };
-    setUserName(data.name)
+    setUserName(data.name);
   }, []);
 
   return (
-    <UserContext.Provider value={{loggedInUser:userName }}>
-       <Header />
-       <Outlet />
-    </UserContext.Provider>
+    <Provider store={cartStore}>
+      <UserContext.Provider value={{ loggedInUser: userName }}>
+        <Header />
+        <Outlet />
+      </UserContext.Provider>
+    </Provider>
   );
 }
 

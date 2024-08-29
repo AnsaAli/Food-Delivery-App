@@ -3,12 +3,16 @@ import { Logo_img } from "../utility/constants";
 import { Link } from "react-router-dom";
 import useOnlineStatus from "../utility/useOnlineStatus";
 import UserContext from "../utility/UserContext";
+import { useSelector } from "react-redux";
 
 const Header = () => {
     const [change, setChnage] = useState('Login');
     const onlineStatus = useOnlineStatus();
 
     const {loggedInUser} = useContext(UserContext);
+
+    const cartItems = useSelector((state)=> state.cart.items);
+    console.log(cartItems)
 
     return (
         <div className="nav-bar flex justify-between shadow-sm px-8" >
@@ -28,11 +32,12 @@ const Header = () => {
                         <Link className="home-link" to={"/about"}>About</Link>
                     </li>
                     <li>
-                        <Link className="home-link" to={"/contact"}>Contact</Link>
-                    </li>
-                    <li>
                         <Link className="home-link" to={"/groceries"}>Groceries</Link>
                     </li>
+                    <li>
+                        <Link className="home-link font-bold uppercase" to={"/contact"}>Cart {cartItems.length} </Link>
+                    </li>
+                   
                     <li>
                         <Link className="home-link font-bold" >Welcome {loggedInUser}!</Link>
                     </li>

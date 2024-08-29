@@ -1,9 +1,18 @@
 import React from "react";
 import { Card_Img } from "../utility/constants";
+import { useDispatch, useSelector } from "react-redux";
+import { addItems } from "../utility/cartSlice";
 
 const ItemListInAccordion = ({ items }) => {
-  console.log("ItemListInAccordion", items);
-  console.log("imge id: ", items[1].card.info.imageId);
+  // console.log("ItemListInAccordion", items);
+  // console.log("imge id: ", items[1].card.info.imageId);
+
+  const dispatch = useDispatch();
+
+  const handleCartItems = (item) => {
+    dispatch(addItems(item))
+  };
+
   return (
     <div>
       {items.map((item) => (
@@ -22,7 +31,10 @@ const ItemListInAccordion = ({ items }) => {
             </div>
             <div className="">
               <div className="absolute">
-                <button className="bg-black text-white shadow-lg   p-1 font-semibold text-sm rounded-sm mx-1/2 ">
+                <button
+                  className="bg-black text-white shadow-lg mx-5 my-28 p-2 font-semibold text-sm rounded-lg mx-1/2 "
+                  onClick={()=> handleCartItems(item)}
+                >
                   Add +
                 </button>
               </div>
