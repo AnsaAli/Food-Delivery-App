@@ -2,12 +2,17 @@ import Shimmer from "./Shimmer";
 import { useParams } from "react-router-dom";
 import useRestaurantMenu from "../utility/useRestaurantMenu";
 import ResCategory from "./ResCategory";
+import { useState } from "react";
 
 const RestaurantMenu = () => {
   //   const [resInfo, setResInfo] = useState(null);
 
   const { resId } = useParams();
   const resInfo = useRestaurantMenu(resId); //creating a custom hook, for making RestaurantMenu component's job only for displaying the resaturants.
+  
+  const [showIndex, setShowIndex] = useState(null);
+  //initially showIndex is 0, but 0th one always expand. so need to pass null
+  //then need to set the showIndex in its child, like setShowIndex= {()=>setShowIndex(index)}
 
   if (resInfo === null) return <Shimmer />;
 
@@ -35,8 +40,17 @@ const RestaurantMenu = () => {
         </p>
 
         {/* categories accordions */}
-        {categories.map((category) => (
-          <ResCategory key={category?.card?.card.title} data={category?.card?.card} />
+        {categories.map((category, index) => (
+          //controlled component , controlled by its parent Restaurantmenu
+          //showItems={true} will show all the accordion
+          //showItems={index=== 0 ? true : false}
+          //showItems={index=== 1 ? true : false} ...
+          <ResCategory
+            key={category?.card?.card.title}
+            data={category?.card?.card}
+            showItems={index === showIndex ? true : false}
+            setShowIndex = {()=>setShowIndex(index)}
+          />
         ))}
       </div>
     </div>
