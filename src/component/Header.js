@@ -35,7 +35,7 @@ const Header = () => {
                         <Link className="home-link" to={"/groceries"}>Groceries</Link>
                     </li>
                     <li>
-                        <Link className="home-link font-bold uppercase" to={"/contact"}>Cart {cartItems.length} </Link>
+                        <Link className="home-link font-bold uppercase" to={"/cart"}>Cart {cartItems.length} </Link>
                     </li>
                    
                     <li>

@@ -32,7 +32,7 @@ const ItemListInAccordion = ({ items }) => {
             <div className="">
               <div className="absolute">
                 <button
-                  className="bg-black text-white shadow-lg mx-5 my-28 p-2 font-semibold text-sm rounded-lg mx-1/2 "
+                  className="bg-black text-white shadow-lg mx-5  p-2 font-semibold text-sm rounded-lg mx-1/2 "
                   onClick={()=> handleCartItems(item)}
                 >
                   Add +
