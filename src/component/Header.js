@@ -27,13 +27,8 @@ const Header = () => {
                     <li>
                         <Link className="home-link" to="/" >Home</Link>
                     </li>
-                    <li>
-                        {/* <a href="/about">About</a> */}
-                        <Link className="home-link" to={"/about"}>About</Link>
-                    </li>
-                    <li>
-                        <Link className="home-link" to={"/groceries"}>Groceries</Link>
-                    </li>
+                    
+                   
                     <li>
                         <Link className="home-link font-bold uppercase" to={"/cart"}>Cart {cartItems.length} </Link>
                     </li>
@@ -41,11 +36,11 @@ const Header = () => {
                     <li>
                         <Link className="home-link font-bold" >Welcome {loggedInUser}!</Link>
                     </li>
-                    <button className="login" onClick={() => {
+                    {/* <button className="login" onClick={() => {
                          {change === 'Login' ? setChnage('Logout') : setChnage('Login')}
                     }} >
                        {change}
-                    </button>
+                    </button> */}
                 </ul>
             </div>
         </div>
