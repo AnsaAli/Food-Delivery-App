@@ -2,10 +2,6 @@ import React, { useState } from "react";
 import ItemListInAccordion from "./ItemListInAccordion";
 
 const ResCategory = ({ data ,showItems,setShowIndex}) => {
-  // const [showItems, setShowItems] = useState(false);
-  //need to give the controller to its parents, to give its parents have the controller to the state
-//if we give the state in ResCategory, when we click the next accordion, previous one wont collapse.
-//so need to giv ethe controll to its parent that is RestaurantMenu (look at the compiler)
   const handleClick = () => {
     // setShowItems(!showItems); //to toggle
     setShowIndex()

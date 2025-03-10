@@ -4,7 +4,6 @@ import Header from "./component/Header";
 import Body from "./component/Body";
 import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
 import Contact from "./component/Contact";
-import About from "./component/About";
 import Error from "./component/Error";
 import RestaurantMenu from "./component/RestaurantMenu";
 import UserContext from "./utility/UserContext";
@@ -13,19 +12,7 @@ import cartStore from "./utility/cartStore";
 import Cart from "./component/Cart";
 // import Grocery from "./component/Grocery";
 const Grocery = lazy(() => import("./component/Grocery"));
-/* 
-Food App
------
-Header
- -logo
- -nav item
-Body
- -container
- -card container
-   image,star,cuisine
-Footer
 
-*/
 
 function App() {
   const [userName, setUserName] = useState();
@@ -61,10 +48,6 @@ const appRouter = createBrowserRouter([
       {
         path: "/contact",
         element: <Contact />,
-      },
-      {
-        path: "/about",
-        element: <About />,
       },
       {
         path: "/groceries",
