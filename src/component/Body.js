@@ -17,7 +17,6 @@ const Body = () => {
   // if(listData.length === 0){
   //     return <p>Loding..</p>
   // }
-
   //to show shimmer UI
   if (listData.length === 0) {
     return <Shimmer />;
@@ -71,7 +70,8 @@ const Body = () => {
           filterData.map((resta) => {
             return (
               <Link
-                to={"/restaurants/" + resta.info.id}
+                // to={"/restaurants/" + resta.info.id}
+                to={"/restaurants" }
                 key={resta.info.id}
                 className="res-list"
               >
